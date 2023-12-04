@@ -18,6 +18,7 @@ import Home from './screens/Home';
 import User from './screens/User';
 import Tab from './assets/BottomTab';
 import Detail from './screens/Detail';
+import Game from './screens/Game';
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,8 @@ const App = () => {
         <Stack.Screen name="Tab" component={Tab} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name='User' component={User} />
+        <Stack.Screen name='Detail' component={Detail} />
+        <Stack.Screen name='Game' component={Game} />
       </Stack.Navigator>
     </NavigationContainer>
   )

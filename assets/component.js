@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { Text, View, TextInput, TouchableOpacity, Image, FlatList, ImageBackground } from "react-native";
+import { Text, View, TextInput, TouchableOpacity, Image, FlatList, ImageBackground, Alert, Share } from "react-native";
 import styles from "./stylesheet";
 import { vw, vh, vmax, vmin } from "react-native-expo-viewport-units";
 import componentStyle, { colorStyle } from './componentStyleSheet';
@@ -40,7 +40,7 @@ export const backAndShare = () => {
                 {leftArrow(vw(7.5), vw(7.5), "#383838")}
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => { }}
+                onPress={() => { onShare() }}
                 style={[{ width: vw(5), height: vw(5), borderRadius: vw(2.5), backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' }]}>
                 {shareIcon(vw(7.5), vw(7.5), "#383838")}
             </TouchableOpacity>
@@ -80,3 +80,25 @@ export const marginBottomForScrollView = () => {
         <View style={{ height: vh(5), opacity: 0 }}></View>
     )
 }
+
+// share fnc 
+
+export const onShare = async () => {
+    try {
+        const result = await Share.share({
+            message:
+                'React Native | A framework for building native apps using React',
+        });
+        if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+                // shared with activity type of result.activityType
+            } else {
+                // shared
+            }
+        } else if (result.action === Share.dismissedAction) {
+            // dismissed
+        }
+    } catch (error) {
+        Alert.alert(error.message);
+    }
+};
